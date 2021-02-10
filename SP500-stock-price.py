@@ -44,3 +44,16 @@ def filedownload(df):
     return href
 
 st.markdown(filedownload(df_selected_sector), unsafe_allow_html=True)
+
+# https://pypi.org/project/yfinance/
+
+data = yf.download(
+        tickers = list(df_selected_sector[:10].Symbol),
+        period = "ytd",
+        interval = "1d",
+        group_by = 'ticker',
+        auto_adjust = True,
+        prepost = True,
+        threads = True,
+        proxy = None
+    )
