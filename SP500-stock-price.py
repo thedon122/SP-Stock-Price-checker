@@ -57,3 +57,11 @@ data = yf.download(
         threads = True,
         proxy = None
     )
+
+# Plot Closing Price of Query Symbol
+def price_plot(symbol):
+  df = pd.DataFrame(data[symbol].Close)
+  df['Date'] = df.index
+  plt.fill_between(df.Date, df.Close, color='skyblue', alpha=0.3)
+  plt.plot(df.Date, df.Close, color='skyblue', alpha=0.8)
+  plt.xticks(rotation=90)
